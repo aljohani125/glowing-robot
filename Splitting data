@@ -1,0 +1,4 @@
+# Split our data into 70% training samples and 30% test samples
+from sklearn.model_selection import train_test_split
+all_trains, all_labels = df['tweets'], df['dialect']
+train, test, train_labels, test_labels = train_test_split(df['tweets'].as_matrix(), df['dialect'].as_matrix(), test_size=0.3)
