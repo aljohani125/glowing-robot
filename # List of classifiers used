@@ -1,0 +1,7 @@
+classifiers = [MultinomialNB(), 
+          LinearSVC(),
+          LogisticRegression(),
+          RandomForestClassifier()] #SVC(C=100, gamma=.1), 
+
+
+compareModels(classifiers,TfidfVectorizer(stop_words='english').fit_transform(all_trains.astype('U')),all_labels.astype('U'))
