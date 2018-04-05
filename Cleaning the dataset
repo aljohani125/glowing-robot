@@ -1,0 +1,7 @@
+# Clean the dataset by removing unwated mentions and links
+for i in df.index:
+    # Use only arabic words
+    if all([c not in str(df['tweets'][i]) for c in string.ascii_lowercase]):
+            line = re.sub(r'(@+\w+)|(\w+:\/\/+[^ ]*)|(#)', '', str(df['tweets'][i]))
+            line = line.replace('_', ' ')
+            df['tweets'][i] = line
