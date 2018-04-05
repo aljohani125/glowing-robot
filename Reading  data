@@ -1,0 +1,2 @@
+# Read data from Excel file
+df = pd.read_excel('tweets_vs_dialects.xlsx', sheet_name='Sheet')
