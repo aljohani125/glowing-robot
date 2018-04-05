@@ -1,0 +1,8 @@
+# Training and testing our models
+for c in classifiers:
+    print('#################################')
+    print(c.__class__.__name__)
+    text_clf_naive_bayes = Pipeline([('vect', TfidfVectorizer()),('clf', c),])
+    text_clf_naive_bayes.fit(train.astype('U'), train_labels)
+    predicted = text_clf_naive_bayes.predict(test.astype('U'))
+    analyze(test_labels,predicted)
