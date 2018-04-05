@@ -1,0 +1,17 @@
+# This method will compare the accuracy score of used model and plot them
+#sns.stripplot(x='model_name', y='accuracy', data=cv_df, size=8, jitter=True, edgecolor="gray", linewidth=2)
+def compareModels(models,features,labels):
+    CV = 4
+    cv_df = pd.DataFrame(index=range(CV * len(models)))
+    entries = []
+    for model in models:
+        model_name = model.__class__.__name__
+        accuracies = cross_val_score(model, features, labels, scoring='accuracy', cv=CV)
+        for fold_idx, accuracy in enumerate(accuracies):
+            entries.append((model_name, fold_idx, accuracy))
+    cv_df = pd.DataFrame(entries, columns=['model_name', 'fold_idx', 'accuracy'])
+    print(cv_df.groupby('model_name').accuracy.mean())
+    g = sns.boxplot(x='model_name', y='accuracy', data=cv_df)
+    g.set_xticklabels(g.get_xticklabels(),rotation=30)
+     plt.show()
+    
